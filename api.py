@@ -5,6 +5,12 @@ from bottle import Bottle, run, request, response
 
 app = Bottle()
 
+@app.get("/")
+def testing():
+    response.status = 200
+    response.body = "Ya boi"
+    return response
+
 @app.post("/playlist")
 def playlistHandler():
     print()
@@ -49,9 +55,9 @@ def playlistHandler():
 
     connection.close()
     response.add_header("Content-Type", "application/json")
-    response.body = songs
+    response.body = json.dumps(songs)
     response.status = 200
     return response
 
 
-run(app, host="localhost", port=8080)
+run(app, host="localhost", port=3000)
