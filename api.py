@@ -60,4 +60,4 @@ def playlistHandler():
     return response
 
 
-run(app, host="", port=3000)
+run(app, host="", port=8080)
