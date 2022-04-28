@@ -46,7 +46,7 @@ def playlistHandler():
     chunks = data.split("\"")
     for line in chunks:
         if "/watch?" in line and "index" in line:
-            songs.append(host + line)
+            songs.append("https://" + host + line)
     
     if len(songs) > 0:
         print("Playlist downloaded: " + str(len(songs)) + " songs")
