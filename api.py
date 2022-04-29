@@ -1,12 +1,12 @@
-import http.client
 from urllib.parse import urlparse
 import json
 from bottle import Bottle, run, request, response
+from PyCli.client import get
 
 app = Bottle()
 
 @app.get("/")
-def testing():
+def statuscheck():
     response.status = 200
     response.body = "Ya boi"
     return response
@@ -28,13 +28,9 @@ def playlistHandler():
         response.body = "Playlist needs to be a public or unlisted YouTube playlist"
         response.status = 200
         return response
-
-    connection = http.client.HTTPSConnection(host, http.client.HTTPS_PORT, timeout=10)
-    connection.request("GET", path)
-    res = connection.getresponse()
-
-    data = res.read().decode()
-    connection.close()
+    
+    d = get(playlist["playlist"], None)
+    data = d[1]
 
     songs = []
     chunks = data.split("\"")
