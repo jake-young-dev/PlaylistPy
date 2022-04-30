@@ -2,6 +2,7 @@ from urllib.parse import urlparse
 import json
 from bottle import Bottle, run, request, response
 from PyCli.client import get
+from helpers.playlist import linkcheck, playlistsplit
 
 app = Bottle()
 
@@ -16,27 +17,17 @@ def playlistHandler():
     rawpl = request.body.read().decode()
 
     playlist = json.loads(rawpl)
-    link = urlparse(playlist["playlist"])
-    host = link.hostname
-    path = link.path + "?" + link.query
+    link = playlist["playlist"]
+    error = linkcheck(link)
 
-    if host == None or path == None:
-        response.body = "That link is dogwater"
-        response.status = 200
-        return response
-    if host != "www.youtube.com":
-        response.body = "Playlist needs to be a public or unlisted YouTube playlist"
+    if error != None:
+        response.body = error
         response.status = 200
         return response
     
-    d = get(playlist["playlist"], None)
-    data = d[1]
+    d = get(link, None)
 
-    songs = []
-    chunks = data.split("\"")
-    for line in chunks:
-        if "/watch?" in line and "index" in line:
-            songs.append("https://" + host + line)
+    songs = playlistsplit(d[1])
 
     if len(songs) > 0:
         response.add_header("Content-Type", "application/json")
