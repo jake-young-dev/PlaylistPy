@@ -19,7 +19,7 @@ def showplaylists():
     response.status = 200
     return response
 
-@app.get("playlist/<name>")
+@app.get("/playlist/<name>")
 def getplaylist(name):
     playlist = getaplaylist(name)
     response.add_header("Content-Type", "application/json")
