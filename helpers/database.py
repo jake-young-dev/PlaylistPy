@@ -21,9 +21,9 @@ def findall():
 def findone(name):
     client = MongoClient('mongodb://localhost:27017/')
     db = client.web_db
+    return db.playlists.find({"name": name})
+    # playlists = []
+    # for doc in db.playlists.find({"name": name}):
+    #     playlists.append(doc)
 
-    playlists = []
-    for doc in db.playlists.find({"name": name}):
-        playlists.append(doc)
-
-    return playlists
+    # return playlists
