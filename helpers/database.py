@@ -13,7 +13,7 @@ def findall():
     db = client.web_db
 
     playlists = []
-    for doc in db.playlists.find({}):
+    for doc in db.playlists.find({}, {"__id": False}):
         playlists.append(doc)
 
     return playlists
@@ -22,7 +22,7 @@ def find(name):
     client = MongoClient('mongodb://localhost:27017/')
     db = client.web_db
     playlists = []
-    for doc in db.playlists.find({"name": name}):
+    for doc in db.playlists.find({"name": name}, {"__id": False}):
         playlists.append(doc)
     
     if len(playlists) > 0:
