@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 
-def linkcheck(rawlink): #returns str's host, error
+def linkcheck(rawlink):
     link = urlparse(rawlink)
     host = link.hostname
     path = link.path + "?" + link.query

@@ -1,8 +1,8 @@
-from urllib.parse import urlparse
 import json
 from bottle import Bottle, run, request, response
 from PyCli.client import get
 from helpers.playlist import linkcheck, playlistsplit
+from helpers.database import test
 
 app = Bottle()
 
@@ -12,8 +12,16 @@ def statuscheck():
     response.body = "Ya boi"
     return response
 
+@app.get("/playlists")
+def showplaylist():
+    #save links to db w mongo
+    #add playlist collection to db, id for playlist is name, rest is links
+    test()
+    response.status = 200
+    return response
+
 @app.post("/playlist")
-def playlistHandler():
+def playlisthandler():
     rawpl = request.body.read().decode()
 
     playlist = json.loads(rawpl)
