@@ -15,7 +15,7 @@ def statuscheck():
 def showplaylists():
     playlists = getallplaylists()
     response.add_header("Content-Type", "application/json")
-    response.body = playlists
+    response.body = json.dumps(playlists)
     response.status = 200
     return response
 
