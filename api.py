@@ -23,7 +23,7 @@ def showplaylists():
 def getplaylist(name):
     playlist = getaplaylist(name)
     response.add_header("Content-Type", "application/json")
-    response.body = playlist
+    response.body = json.dumps(playlist)
     response.status = 200
     return response
 
