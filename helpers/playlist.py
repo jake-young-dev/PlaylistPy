@@ -29,11 +29,10 @@ def playlistsplit(pl):
 
 def getaplaylist(name):
     pl = findone(name)
-    return pl["songs"]
-    # songlinks = []
-    # for item in pl:
-    #     songlinks.append(item["songs"])
-    # return songlinks
+    if pl != None:
+        return pl
+    else:
+        return "Playlist not found."
 
 
 def getallplaylists():
