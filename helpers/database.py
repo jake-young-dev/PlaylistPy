@@ -18,7 +18,7 @@ def findall():
 
     return playlists
 
-def findone(name):
+def find(name):
     client = MongoClient('mongodb://localhost:27017/')
     db = client.web_db
     playlists = []
@@ -26,6 +26,6 @@ def findone(name):
         playlists.append(doc)
     
     if len(playlists) > 0:
-        return playlists[0]
+        return playlists
     else:
         return None
