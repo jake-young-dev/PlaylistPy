@@ -14,6 +14,6 @@ def findallplaylists():
 
     playlists = []
     for doc in db.playlists.find({}):
-        playlists.append(doc.name)
+        playlists.append(doc['name'])
 
     return playlists
