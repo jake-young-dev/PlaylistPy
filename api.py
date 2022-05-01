@@ -1,8 +1,7 @@
 import json
 from bottle import Bottle, run, request, response
 from PyCli.client import get
-from helpers.playlist import linkcheck, playlistsplit
-from helpers.database import test
+from helpers.playlist import linkcheck, playlistsplit, getallplaylists
 
 app = Bottle()
 
@@ -14,9 +13,9 @@ def statuscheck():
 
 @app.get("/playlists")
 def showplaylist():
-    #save links to db w mongo
-    #add playlist collection to db, id for playlist is name, rest is links
-    test()
+    playlists = getallplaylists()
+    response.add_header("Content-Type", "application/json")
+    response.body = playlists
     response.status = 200
     return response
 

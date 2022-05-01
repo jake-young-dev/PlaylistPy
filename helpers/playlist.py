@@ -1,4 +1,5 @@
 from urllib.parse import urlparse
+from helpers.database import findallplaylists
 
 def linkcheck(rawlink):
     link = urlparse(rawlink)
@@ -24,3 +25,8 @@ def playlistsplit(pl):
             songs.append("https://www.youtube.com" + line)
 
     return songs
+
+
+def getallplaylists():
+    pl = findallplaylists()
+    return pl
