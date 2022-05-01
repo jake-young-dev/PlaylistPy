@@ -8,12 +8,22 @@ def test():
     # print(db.playlists.find({}))
     client.close()
 
-def findallplaylists():
+def findall():
     client = MongoClient('mongodb://localhost:27017/')
     db = client.web_db
 
     playlists = []
     for doc in db.playlists.find({}):
+        playlists.append(doc['name'])
+
+    return playlists
+
+def findone(name):
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client.web_db
+
+    playlists = []
+    for doc in db.playlists.find({"name": name}):
         playlists.append(doc['name'])
 
     return playlists

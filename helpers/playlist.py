@@ -1,5 +1,5 @@
 from urllib.parse import urlparse
-from helpers.database import findallplaylists
+from helpers.database import findall, findone
 
 def linkcheck(rawlink):
     link = urlparse(rawlink)
@@ -27,6 +27,11 @@ def playlistsplit(pl):
     return songs
 
 
+def getaplaylist(name):
+    pl = findone(name)
+    return pl
+
+
 def getallplaylists():
-    pl = findallplaylists()
+    pl = findall()
     return pl
