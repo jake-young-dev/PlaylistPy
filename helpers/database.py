@@ -14,7 +14,7 @@ def findall():
 
     playlists = []
     for doc in db.playlists.find({}):
-        playlists.append(doc['name'])
+        playlists.append(doc)
 
     return playlists
 
@@ -24,6 +24,6 @@ def findone(name):
 
     playlists = []
     for doc in db.playlists.find({"name": name}):
-        playlists.append(doc['name'])
+        playlists.append(doc)
 
     return playlists

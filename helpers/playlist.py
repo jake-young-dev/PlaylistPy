@@ -29,7 +29,10 @@ def playlistsplit(pl):
 
 def getaplaylist(name):
     pl = findone(name)
-    return pl
+    songlinks = []
+    for item in pl:
+        songlinks.append(item["songs"])
+    return songlinks
 
 
 def getallplaylists():
