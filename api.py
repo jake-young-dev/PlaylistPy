@@ -3,14 +3,17 @@ from bottle import Bottle, run, request, response
 from PyCli.client import get
 from helpers.playlist import linkcheck, playlistsplit, getallplaylists, getaplaylist
 
+#creat bottle app
 app = Bottle()
 
+#status endpoint
 @app.get("/")
 def statuscheck():
     response.status = 200
     response.body = "Ya boi"
     return response
 
+#get list of saved playlists
 @app.get("/playlists")
 def showplaylists():
     playlists = getallplaylists()
@@ -19,6 +22,7 @@ def showplaylists():
     response.status = 200
     return response
 
+#gets songs of playlist <name>
 @app.get("/playlist/<name>")
 def getplaylist(name):
     playlist = getaplaylist(name)
@@ -27,6 +31,7 @@ def getplaylist(name):
     response.status = 200
     return response
 
+#returns a list of songs in playlist 
 @app.post("/playlist")
 def playlisthandler():
     rawpl = request.body.read().decode()

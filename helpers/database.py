@@ -1,26 +1,17 @@
 from pymongo import MongoClient
 
-def test():
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client.web_db
-    for doc in db.playlists.find({}):
-        print(doc)
-    # print(db.playlists.find({}))
-    client.close()
+db = MongoClient('mongodb://localhost:27017/').web_db
+
 
 def findall():
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client.web_db
-
     playlists = []
     for doc in db.playlists.find({}, {"_id": False}):
         playlists.append(doc)
 
     return playlists
 
+
 def find(name):
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client.web_db
     playlists = []
     for doc in db.playlists.find({"name": name}, {"_id": False}):
         playlists.append(doc)
