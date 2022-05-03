@@ -42,13 +42,17 @@ def playlisthandler():
     
     d = get(link, None)
 
-    songs = playlistsplit(d[1])
+    if d[0] == 200:
+        songs = playlistsplit(d[1])
 
-    if len(songs) > 0:
-        response.add_header("Content-Type", "application/json")
-        response.body = json.dumps(songs)
+        if len(songs) > 0:
+            response.add_header("Content-Type", "application/json")
+            response.body = json.dumps(songs)
+        else:
+            response.body = "No songs found in playlist"
+
     else:
-        response.body = "No songs found in playlist"
+        response.body = "API Client error"
 
     response.status = 200
     return response
