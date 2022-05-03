@@ -1,6 +1,6 @@
 # PlaylistPy
 
-A Python3 Bottle API used my Discord bot to handle youtube playlists for music functionality
+A Python3 Bottle API used by my Discord bot to handle youtube playlists for music functionality
 
 <br />
 <br />
@@ -20,9 +20,10 @@ pip install bottle
 ```
 
 ### [PyCli](https://github.com/jake-young-dev/PyCli)
-This repo uses my personal API Client written in Python
 ```
 pip install git+https://github.com/jake-young-dev/PyCli.git#egg=PyCli
+
+This repo uses my personal API Client written in Python
 ```
 
 ### Pymongo
